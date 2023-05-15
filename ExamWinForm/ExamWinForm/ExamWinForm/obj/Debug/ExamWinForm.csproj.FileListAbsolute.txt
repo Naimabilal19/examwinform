@@ -1,0 +1,10 @@
+C:\Users\naima\source\repos\ExamWinForm\ExamWinForm\obj\Debug\ExamWinForm.csproj.AssemblyReference.cache
+C:\Users\naima\source\repos\ExamWinForm\ExamWinForm\obj\Debug\ExamWinForm.Form1.resources
+C:\Users\naima\source\repos\ExamWinForm\ExamWinForm\obj\Debug\ExamWinForm.Properties.Resources.resources
+C:\Users\naima\source\repos\ExamWinForm\ExamWinForm\obj\Debug\ExamWinForm.csproj.GenerateResource.cache
+C:\Users\naima\source\repos\ExamWinForm\ExamWinForm\obj\Debug\ExamWinForm.csproj.CoreCompileInputs.cache
+C:\Users\naima\source\repos\ExamWinForm\ExamWinForm\bin\Debug\ExamWinForm.exe.config
+C:\Users\naima\source\repos\ExamWinForm\ExamWinForm\bin\Debug\ExamWinForm.exe
+C:\Users\naima\source\repos\ExamWinForm\ExamWinForm\bin\Debug\ExamWinForm.pdb
+C:\Users\naima\source\repos\ExamWinForm\ExamWinForm\obj\Debug\ExamWinForm.exe
+C:\Users\naima\source\repos\ExamWinForm\ExamWinForm\obj\Debug\ExamWinForm.pdb
