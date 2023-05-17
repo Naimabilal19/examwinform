@@ -30,6 +30,7 @@ namespace ExamWinForm
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -106,8 +107,7 @@ namespace ExamWinForm
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button64 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.button65 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -818,7 +818,6 @@ namespace ExamWinForm
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(130, 36);
             this.textBox2.TabIndex = 6;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox3
             // 
@@ -829,7 +828,6 @@ namespace ExamWinForm
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(130, 36);
             this.textBox3.TabIndex = 6;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox4
             // 
@@ -858,37 +856,29 @@ namespace ExamWinForm
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(527, 127);
+            this.label4.Location = new System.Drawing.Point(585, 127);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(24, 25);
+            this.label4.Size = new System.Drawing.Size(84, 25);
             this.label4.TabIndex = 10;
-            this.label4.Text = "0";
+            this.label4.Text = "0:00:00";
             // 
-            // label5
+            // button65
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(630, 127);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(24, 25);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "0";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(721, 127);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(24, 25);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "0";
+            this.button65.Location = new System.Drawing.Point(40, 117);
+            this.button65.Name = "button65";
+            this.button65.Size = new System.Drawing.Size(281, 44);
+            this.button65.TabIndex = 11;
+            this.button65.Text = "Сохранить";
+            this.button65.UseVisualStyleBackColor = true;
+            this.button65.Click += new System.EventHandler(this.button65_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1282, 804);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button65);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button64);
             this.Controls.Add(this.textBox4);
@@ -964,9 +954,10 @@ namespace ExamWinForm
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Клавиатурный тренажер";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1050,8 +1041,7 @@ namespace ExamWinForm
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button64;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button65;
     }
 }
 

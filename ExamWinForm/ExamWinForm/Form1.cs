@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,13 +13,12 @@ namespace ExamWinForm
 {
     public partial class Form1 : Form
     {
+        DateTime date = DateTime.Now;
         Button[] keyboard;
         Button[] play;
-        int speed=0, fail=0;
-        char[] znak;
-        int h=0, m=0, s=0;
-        string str, str1= "QETUO{D184630-+VBNM><? ASFGJK086321", str2= "QY35VKODJSL:15590~++--'B   8456BVCNXXKD", 
-            str3= "AJKLDVW8462MM C AKDL; >><<<><>?02Fk[  199-++---+||[[]ZGCUS";
+        int fail;
+        string str1, str4;
+        string path;
         public Form1()
         {
             InitializeComponent();
@@ -31,85 +31,66 @@ namespace ExamWinForm
             button53,button54,button55,button56,button57,button58,button59,button60,button61};
 
             play = new Button[] { button62, button63 };
-            str = textBox1.Text;
-        }
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            string s = e.KeyCode.ToString();
-            for(int i =0;i<Controls.Count;i++)
-            {
-                if (Controls[i].Text == s) { Controls[i].BackColor = Color.Yellow; }
-            }
-        }
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
-        {
-            string s = e.KeyCode.ToString();
-            for (int i = 0; i < Controls.Count; i++)
-            {
-                if (Controls[i].Text == s) { Controls[i].BackColor = Color.White; }
-            }
+            str1 = textBox1.Text;
+            str4 = textBox4.Text;
+            fail = 0;
+            path = "Result.txt";
         }
 
         private void button62_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked) { textBox4.Text = str1;
+            textBox1.Clear();
+            textBox4.Clear();
+            if (radioButton1.Checked) { textBox4.Text = "qetuo{d184630-+vbnm><? asfgk086321";
                 textBox1.Focus();
             }
-            else if (radioButton2.Checked) { textBox4.Text = str2;
+            else if (radioButton2.Checked) { textBox4.Text = "qy35vkodjsl:15590~++--'b   8456bvcnxxkd";
                 textBox1.Focus();
             }
-            else if (radioButton3.Checked) { textBox4.Text = str3;
+            else if (radioButton3.Checked) { textBox4.Text = "ajklvw8462mm c akdl; >><<<><>?02fk[  199-++---+||[[]zguc";
                 textBox1.Focus();
             }
-
-            timer1.Start();
-            if(!radioButton1.Checked&& !radioButton2.Checked&& !radioButton3.Checked)
+            label4.Text = "00:00";
+            date = new DateTime(0, 0);
+            timer1.Enabled = true;
+            if (!radioButton1.Checked&& !radioButton2.Checked&& !radioButton3.Checked)
             {
                 timer1.Stop();
                 MessageBox.Show("Выберите сложность для начала игры!");
             }
+            
+        }
+        public void check()
+        {
+            for (int i = 0; i < Math.Min(str1.Length, str4.Length); i++)
+            {
+                if (str1[i] != str4[i])
+                {
+                    fail++;
+                }
+            }
+            fail += Math.Abs(str1.Length - str4.Length);
+            textBox3.Text = fail.ToString();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            s = s- 1;
-            if(s==-1)
-            {
-                m = m-1;
-                s = 59;
-            }
-            if(m==-1)
-            {
-                h =  0;
-                m = 2;
-            }
-            if(h==0&&m==0&&s==0)
-            {
-                timer1.Stop();
-                MessageBox.Show("Время вышло");
-            }
-
-            label4.Text = Convert.ToString(h);
-            label5.Text = Convert.ToString(m);
-            label6.Text = Convert.ToString(s);
+            date = date.AddSeconds(0.1);
+            label4.Text = date.ToString("mm:ss");
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void button65_Click(object sender, EventArgs e)
         {
-            speed = 0;
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                sw.Write("Ваша запись: "+ textBox1.Text +"\n");
+                sw.Write("Скорость: " + textBox2.Text+"\n");
+                sw.Write("Кол-во ошибок : " + textBox3.Text+"\n");
+                sw.WriteLine("\n");
+                sw.Close();
+                MessageBox.Show("Результат сохранен в файл");
+            }
         }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void textBox1_TextChanged(object sender, KeyEventArgs e)
-        {
-            
-            
-        }
-
         private void button64_Click(object sender, EventArgs e)
         {
             if(button64.Enabled)
@@ -121,13 +102,24 @@ namespace ExamWinForm
                 {
                     keyboard[i].BackColor = Color.Aqua;
                 }
-                for(int i=0;i<play.Length;i++)
+                button56.BackColor = Color.CadetBlue;
+                button57.BackColor = Color.CadetBlue;
+                button58.BackColor = Color.CadetBlue;
+                button59.BackColor = Color.CadetBlue;
+                button60.BackColor = Color.CadetBlue;
+                button61.BackColor = Color.CadetBlue;
+                button32.BackColor = Color.DarkTurquoise;
+                button38.BackColor = Color.DarkTurquoise;
+                button45.BackColor = Color.DarkTurquoise;
+                button37.BackColor = Color.DarkTurquoise;
+                button43.BackColor = Color.DarkTurquoise;
+                button31.BackColor = Color.DarkTurquoise;
+                button65.BackColor = Color.DarkTurquoise;
+                for (int i=0;i<play.Length;i++)
                 {
                     play[i].BackColor = Color.CadetBlue;
                 }
                 label4.ForeColor = Color.Aqua;
-                label5.ForeColor = Color.Aqua;
-                label6.ForeColor = Color.Aqua;
                 label1.ForeColor = Color.Aqua;
                 label2.ForeColor = Color.Aqua;
                 label3.ForeColor = Color.Aqua;
@@ -142,27 +134,19 @@ namespace ExamWinForm
                 textBox3.BackColor = Color.Aquamarine;
             }
             
+            
         }
-
         private void button63_Click(object sender, EventArgs e)
         {
-            timer1.Stop();
-            label4.Text = "0";
-            label5.Text = "0";
-            label6.Text = "0";
-            for (int i = 0; i < textBox4.TextLength; i++)
-            {
-                for (int j = 0; j < textBox4.TextLength; j++)
-                {
-                    if (textBox1.Text[i] != textBox4.Text[j])
-                        fail++;
-                    else
-                        fail = 0;
-                }
-            }
-            textBox3.Text = fail.ToString();
-            textBox1.Clear();
-
+            string s = label4.Text;
+            textBox2.Text = s;
+            timer1.Enabled = false;
+            label4.Text = "00:00";
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            check();
+            
         }
     }
 }
